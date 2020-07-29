@@ -16,6 +16,7 @@ def signup():
             user = User(username=form.username.data,password=form.password.data)
             db.session.add(user)
             db.session.commit()
+            login_user(user)
             return redirect(url_for('user.login'))
         return render_template('signup.html',form=form)
     else:
