@@ -17,7 +17,7 @@ def signup():
             db.session.add(user)
             db.session.commit()
             login_user(user)
-            return redirect(url_for('user.login'))
+            return redirect(url_for('core.index'))
         return render_template('signup.html',form=form)
     else:
         abort(404)
