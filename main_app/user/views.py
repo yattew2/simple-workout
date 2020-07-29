@@ -16,8 +16,7 @@ def signup():
             user = User(username=form.username.data,password=form.password.data)
             db.session.add(user)
             db.session.commit()
-            login_user(user)
-            return redirect(url_for('core.index'))
+            return redirect(url_for('user.login'))
         return render_template('signup.html',form=form)
     else:
         abort(404)
@@ -31,9 +30,6 @@ def login():
             if user:
                 if user.check_password(form.password.data):
                     login_user(user)
-                    # next = request.args.get('next')
-                    # if not (next):
-                    #     return flask.abort(400)
                     return redirect(url_for('core.index'))
         return render_template('login.html',form=form,errors=form.errors.items())
     else:
