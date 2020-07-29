@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br>
+    <br>
+    <div class="container">
+        <div class="jumbotron" align='center'>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.exercise_name(class="form-control-sm",placeholder="Exercise Name") }}
+                </div>
+                <div class="form-group">
+                    {{ form.reps(class="form-control-sm", placeholder="Reps") }}
+                </div>
+                <div class="form-group">
+                    {{ form.weight(class="form-control-sm", placeholder="weight") }}
+                </div>
+                    {{ form.submit(class="btn btn-primary") }}
+            </form>
+        </div>
+    </div>
+    <br>
+    
+    {% if exercises %}
+        <div class="container" align='center'>
+            <ul class="list-group">
+            {% for exercise in exercises %}
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class='col-sm'>{{ exercise.exercise_name }}</div>
+                        <div class='col-sm'>Reps: {{ exercise.reps }}</div>
+                        <div class='col-sm'>Weight: {{ exercise.weight }}</div>
+                    </div>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>  
+    {% endif %}
+    
+{% endblock %}

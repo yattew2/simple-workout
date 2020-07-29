@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">WELCOME {% if current_user.is_authenticated %}{{ current_user.username }}{% endif %}</h1>
+        <p class="lead">This is a simple Workout tracker</p>
+        <hr class="my-4">
+        <p>{{ welcome_text }}</p>
+    </div>
+{% endblock %}

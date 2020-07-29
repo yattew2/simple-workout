@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="jumbotron">
+            <h1 align="center" >This is your workout history {{ current_user.username }}</h1>
+            <br>
+        </div>
+    </div>
+    {% for workout,exercises in work_exc.items() %}
+        <div class="container">
+            <div class="jumbotron">
+                <h2 class="display-4">Date:{{ workout.time.strftime('%d-%m-%Y') }}</h2>
+                <h2 class="display-4">Time:{{ workout.time.strftime("%H:%M:%S") }}</h2>
+                <hr class="my-4">
+                <p>Exercises: {{ exercises }}</p>
+                <a class="btn btn-primary btn-lg" href="{{ url_for('workouts.workout', workout_id=workout.id) }}" role="button">View Details</a>
+                <form action="{{ url_for('workouts.delete_workout', workout_id=workout.id) }}" method="POST">
+                    <input class="btn btn-danger" type="submit" value="Delete">
+                </form>            
+            </div>
+        </div>
+    {% endfor %}
+    <div class="container" align="center">
+        {% for page_num in workouts.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+            {% if page_num %}
+                {% if workouts.page == page_num %}
+                    <a class="btn btn-info mb-4" href="{{ url_for('user.history',page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('user.history',page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                ...
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

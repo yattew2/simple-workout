@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="jumbotron" >
+            <h3>The details of the workout you did on {{ workout.time.strftime('%d-%m-%Y') }} at {{ workout.time.strftime("%H:%M:%S") }}</h3>
+        </div>
+    </div>
+    <div class="container">
+        <ul class="list-group">
+            {% for exercise in workout.exercises[::-1] %}
+            <li class="list-group-item">
+                <div class="row">
+                    <div class='col-sm'>{{ exercise.exercise_name }}</div>
+                    <div class='col-sm'>Reps: {{ exercise.reps }}</div>
+                    <div class='col-sm'>Weight: {{ exercise.weight }}</div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
