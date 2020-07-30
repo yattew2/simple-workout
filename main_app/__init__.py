@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://iglsnmmcnywmra:b98450899319186d26a5469588290e879c9ea9c452867ba1decd0aa19b3edd09@ec2-50-19-26-235.compute-1.amazonaws.com:5432/d26c0trro17b5q'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://username:password@localhost:5432/mydatabase'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
